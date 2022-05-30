@@ -1,0 +1,65 @@
+Index: src/test/java/org/hepsiburada/Test_Add_To_Cart.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.hepsiburada;\r\n\r\nimport com.hepsiburada.*;\r\n\r\n\r\nimport org.junit.jupiter.api.Assertions;\r\nimport org.junit.jupiter.api.Order;\r\nimport org.junit.jupiter.api.Test;\r\n\r\n\r\n\r\npublic class Test_Add_To_Cart extends BaseTest {\r\n\r\n    HomePage homePage;\r\n    SelectProducts selectProducts;\r\n    AddToCart addToCart;\r\n    CartPage cartPage;\r\n    YatakOdasi yatakOdasi;\r\n\r\n\r\n    @Test\r\n    @Order(1)\r\n    public void selectYatakOdasi() {\r\n        homePage = new HomePage(driver);\r\n        homePage.selectYatakOdasi();\r\n        yatakOdasi = new YatakOdasi(driver);\r\n        yatakOdasi.isOnYatakOdasiPage();\r\n        Assertions.assertTrue(yatakOdasi.isOnYatakOdasiPage(), \"couldn't find product\");\r\n\r\n    }\r\n\r\n    @Test\r\n    @Order(2)\r\n    public void addRandomProduct() {\r\n        selectProducts = new SelectProducts(driver);\r\n        selectProducts.addCartsToRandomProducts();\r\n        Assertions.assertTrue(selectProducts.isOnSelectedProductPage(), \"was not on selected product page\");\r\n\r\n    }\r\n\r\n    @Test\r\n    @Order(3)\r\n    public void goToCart() {\r\n        addToCart = new AddToCart(driver);\r\n        addToCart.clickToCart();\r\n        cartPage = new CartPage(driver);\r\n        cartPage.clickGoToCart();\r\n        Assertions.assertTrue(addToCart.isAddedToCart(),\"couldn't added to cart\");\r\n\r\n    }\r\n\r\n    @Test\r\n    @Order(4)\r\n    public void deleteProductsFromCart() {\r\n        cartPage = new CartPage(driver);\r\n        cartPage.deleteAllProducts();\r\n        Assertions.assertTrue(cartPage.isDeletedProducts(), \"Products are deleted\");\r\n\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/org/hepsiburada/Test_Add_To_Cart.java b/src/test/java/org/hepsiburada/Test_Add_To_Cart.java
+--- a/src/test/java/org/hepsiburada/Test_Add_To_Cart.java	(revision de612d020318e404b0bb94307e6578d500b62f00)
++++ b/src/test/java/org/hepsiburada/Test_Add_To_Cart.java	(date 1653640896588)
+@@ -25,7 +25,8 @@
+         homePage.selectYatakOdasi();
+         yatakOdasi = new YatakOdasi(driver);
+         yatakOdasi.isOnYatakOdasiPage();
+-        Assertions.assertTrue(yatakOdasi.isOnYatakOdasiPage(), "couldn't find product");
++        Assertions.assertTrue(yatakOdasi
++                .isOnYatakOdasiPage(), "couldn't find product");
+ 
+     }
+ 
+@@ -34,7 +35,8 @@
+     public void addRandomProduct() {
+         selectProducts = new SelectProducts(driver);
+         selectProducts.addCartsToRandomProducts();
+-        Assertions.assertTrue(selectProducts.isOnSelectedProductPage(), "was not on selected product page");
++        Assertions.assertTrue(selectProducts
++                .isOnSelectedProductPage(), "was not on selected product page");
+ 
+     }
+ 
+@@ -45,7 +47,8 @@
+         addToCart.clickToCart();
+         cartPage = new CartPage(driver);
+         cartPage.clickGoToCart();
+-        Assertions.assertTrue(addToCart.isAddedToCart(),"couldn't added to cart");
++        Assertions.assertTrue(addToCart
++                .isAddedToCart(),"couldn't added to cart");
+ 
+     }
+ 
+@@ -54,8 +57,10 @@
+     public void deleteProductsFromCart() {
+         cartPage = new CartPage(driver);
+         cartPage.deleteAllProducts();
+-        Assertions.assertTrue(cartPage.isDeletedProducts(), "Products are deleted");
++        Assertions.assertTrue(cartPage
++                .isDeletedProducts(), "Products are deleted");
+ 
+     }
+ }
++//This comment is for new analysis in Sonarqube
+ 
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+--- /dev/null	(date 1652095872533)
++++ b/.gitignore	(date 1652095872533)
+@@ -0,0 +1,2 @@
++# Project exclude paths
++/target/
+\ No newline at end of file
