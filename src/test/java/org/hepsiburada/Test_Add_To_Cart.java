@@ -25,7 +25,8 @@ public class Test_Add_To_Cart extends BaseTest {
         homePage.selectYatakOdasi();
         yatakOdasi = new YatakOdasi(driver);
         yatakOdasi.isOnYatakOdasiPage();
-        Assertions.assertTrue(yatakOdasi.isOnYatakOdasiPage(), "couldn't find product");
+        Assertions.assertTrue(yatakOdasi
+                .isOnYatakOdasiPage(), "couldn't find product");
 
     }
 
@@ -34,7 +35,8 @@ public class Test_Add_To_Cart extends BaseTest {
     public void addRandomProduct() {
         selectProducts = new SelectProducts(driver);
         selectProducts.addCartsToRandomProducts();
-        Assertions.assertTrue(selectProducts.isOnSelectedProductPage(), "was not on selected product page");
+        Assertions.assertTrue(selectProducts
+                .isOnSelectedProductPage(), "was not on selected product page");
 
     }
 
@@ -45,7 +47,8 @@ public class Test_Add_To_Cart extends BaseTest {
         addToCart.clickToCart();
         cartPage = new CartPage(driver);
         cartPage.clickGoToCart();
-        Assertions.assertTrue(addToCart.isAddedToCart(),"couldn't added to cart");
+        Assertions.assertTrue(addToCart
+                .isAddedToCart(),"couldn't added to cart");
 
     }
 
@@ -54,8 +57,11 @@ public class Test_Add_To_Cart extends BaseTest {
     public void deleteProductsFromCart() {
         cartPage = new CartPage(driver);
         cartPage.deleteAllProducts();
-        Assertions.assertTrue(cartPage.isDeletedProducts(), "Products are deleted");
+        Assertions.assertTrue(cartPage
+                .isDeletedProducts(), "Products are deleted");
 
     }
 }
+
+//This comment is for new analysis in Sonarqube
 
